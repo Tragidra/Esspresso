@@ -167,7 +167,8 @@ public class BolshoiTest {
         onView(allOf(withId(R.id.search_src_text), isDisplayed()))
                 .perform(replaceText("Kazan"), closeSoftKeyboard());
 
-        Thread.sleep(1000);
+        IdlingResource idlingResource = new ElapsedTimeIdlingResource(2);
+        Espresso.registerIdlingResources(idlingResource);
 
         onView(allOf(withId(R.id.page_list_item_title), withText("Kazan"), isDisplayed()))
                 .check(matches(withText("Kazan")));
